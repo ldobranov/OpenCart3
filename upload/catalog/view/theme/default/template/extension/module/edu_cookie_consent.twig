@@ -1,0 +1,141 @@
+<style>
+  #cookie-consent-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: {{ edu_cookie_consent_bg_color|default('#2c2c2c') }};
+    color: {{ edu_cookie_consent_text_color|default('#ffffff') }};
+    padding: 1em;
+    z-index: 9999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: {{ edu_cookie_consent_font_size|default('14px') }};
+  }
+
+  #cookie-consent-banner button {
+    background: {{ edu_cookie_consent_button_color|default('#ffd700') }};
+    color: #000;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  #cookie-consent-banner a {
+    color: {{ edu_cookie_consent_button_color|default('#ffd700') }};
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  #cookie-consent-overlay {
+  pointer-events: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 9998;
+    display: none;
+  }
+
+  #cookie-modal {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 800px;
+    max-height: 70vh;
+    overflow-y: auto;
+    background: #fff;
+    color: #000;
+    padding: 2em;
+    z-index: 10000;
+    display: none;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  }
+
+  #cookie-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.2em;
+  }
+</style>
+
+<div id="cookie-consent-overlay"></div>
+
+<div id="cookie-consent-banner" style="display: none;">
+  <div style="flex: 1; padding-right: 1em;">
+    {{ edu_cookie_consent_message|default('This website uses cookies to enhance your experience.') }}
+    <a onclick="openCookieModal()">Learn more</a>
+  </div>
+  <button onclick="acceptCookies()">{{ edu_cookie_consent_button|default('Accept') }}</button>
+</div>
+
+<div id="cookie-modal">
+  <div id="cookie-modal-close" onclick="closeCookieModal()">✖</div>
+  <div id="cookie-modal-content">Loading...</div>
+</div>
+
+<script>
+  function acceptCookies() {
+    localStorage.setItem('cookiesAccepted', 'true');
+    document.getElementById('cookie-consent-banner').style.display = 'none';
+    document.getElementById('cookie-consent-overlay').style.display = 'none';
+    document.body.style.overflow = '';
+    document.body.style.pointerEvents = '';
+  }
+
+  function openCookieModal() {
+    const modal = document.getElementById('cookie-modal');
+    const content = document.getElementById('cookie-modal-content');
+
+    fetch('/index.php?route=information/information&information_id={{ edu_cookie_consent_info_id|default(3) }}')
+      .then(response => response.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const infoText = doc.querySelector('#content') || doc.body;
+        content.innerHTML = infoText.innerHTML;
+        modal.style.display = 'block';
+        document.body.style.pointerEvents = 'auto';
+        document.body.style.overflow = 'auto';
+      });
+  }
+
+  function closeCookieModal() {
+    document.getElementById('cookie-modal').style.display = 'none';
+    document.getElementById('cookie-consent-overlay').style.pointerEvents = 'auto';
+      document.getElementById('cookie-modal').style.pointerEvents = 'auto';
+      document.getElementById('cookie-consent-banner').style.pointerEvents = 'auto';
+    document.body.style.overflow = 'hidden';
+    document.getElementById('cookie-consent-banner').style.pointerEvents = 'auto';
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const accepted = localStorage.getItem('cookiesAccepted');
+    const banner = document.getElementById('cookie-consent-banner');
+    const overlay = document.getElementById('cookie-consent-overlay');
+
+    if (accepted !== 'true') {
+      banner.style.display = 'flex';
+      overlay.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+      document.getElementById('cookie-consent-overlay').style.pointerEvents = 'auto';
+      document.getElementById('cookie-modal').style.pointerEvents = 'auto';
+      document.getElementById('cookie-consent-banner').style.pointerEvents = 'auto';
+      banner.style.pointerEvents = 'auto';
+    } else {
+      banner.style.display = 'none';
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+      document.body.style.pointerEvents = '';
+    }
+  });
+</script>
