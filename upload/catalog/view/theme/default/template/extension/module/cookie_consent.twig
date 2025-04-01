@@ -4,19 +4,19 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    background: {{ edu_cookie_consent_bg_color|default('#2c2c2c') }};
-    color: {{ edu_cookie_consent_text_color|default('#ffffff') }};
+    background: {{ cookie_consent_bg_color|default('#2c2c2c') }};
+    color: {{ cookie_consent_text_color|default('#ffffff') }};
     padding: 1em;
     z-index: 9999;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    font-size: {{ edu_cookie_consent_font_size|default('14px') }};
+    font-size: {{ cookie_consent_font_size|default('14px') }};
   }
 
   #cookie-consent-banner button {
-    background: {{ edu_cookie_consent_button_color|default('#ffd700') }};
+    background: {{ cookie_consent_button_color|default('#ffd700') }};
     color: #000;
     border: none;
     padding: 0.5em 1em;
@@ -25,7 +25,7 @@
   }
 
   #cookie-consent-banner a {
-    color: {{ edu_cookie_consent_button_color|default('#ffd700') }};
+    color: {{ cookie_consent_button_color|default('#ffd700') }};
     text-decoration: underline;
     cursor: pointer;
   }
@@ -72,10 +72,10 @@
 
 <div id="cookie-consent-banner" style="display: none;">
   <div style="flex: 1; padding-right: 1em;">
-    {{ edu_cookie_consent_message|default('This website uses cookies to enhance your experience.') }}
+    {{ cookie_consent_message|default('This website uses cookies to enhance your experience.') }}
     <a onclick="openCookieModal()">Learn more</a>
   </div>
-  <button onclick="acceptCookies()">{{ edu_cookie_consent_button|default('Accept') }}</button>
+  <button onclick="acceptCookies()">{{ cookie_consent_button|default('Accept') }}</button>
 </div>
 
 <div id="cookie-modal">
@@ -96,7 +96,7 @@
     const modal = document.getElementById('cookie-modal');
     const content = document.getElementById('cookie-modal-content');
 
-    fetch('/index.php?route=information/information&information_id={{ edu_cookie_consent_info_id|default(3) }}')
+    fetch('/index.php?route=information/information&information_id={{ cookie_consent_info_id|default(3) }}')
       .then(response => response.text())
       .then(html => {
         const parser = new DOMParser();

@@ -1,17 +1,17 @@
 This XML file does not appear to have any style information associated with it. The document tree is shown below.
 <modification>
-<name>EduHelp Cookie Consent v2.5</name>
-<code>edu_cookie_consent_v25</code>
+<name>Cookie Consent v2.5</name>
+<code>cookie_consent_v25</code>
 <version>2.5</version>
-<author>EduHelpLTD</author>
-<link>https://eduhelpltd.com</link>
+<author>Config.bg</author>
+<link>https://config.bg</link>
 <file path="catalog/controller/common/footer.php">
 <operation>
 <search>
 <![CDATA[ $data['scripts'] = $this->document->getScripts('footer'); ]]>
 </search>
 <add position="after">
-<![CDATA[ $data['edu_cookie_banner'] = $this->load->view('extension/module/edu_cookie_consent', [ 'edu_cookie_consent_message' => $this->config->get('edu_cookie_consent_message'), 'edu_cookie_consent_button' => $this->config->get('edu_cookie_consent_button'), 'edu_cookie_consent_info_id' => $this->config->get('edu_cookie_consent_info_id'), 'edu_cookie_consent_bg_color' => $this->config->get('edu_cookie_consent_bg_color'), 'edu_cookie_consent_text_color' => $this->config->get('edu_cookie_consent_text_color'), 'edu_cookie_consent_button_color' => $this->config->get('edu_cookie_consent_button_color'), 'edu_cookie_consent_font_size' => $this->config->get('edu_cookie_consent_font_size') ]); ]]>
+<![CDATA[ $data['cookie_banner'] = $this->load->view('extension/module/cookie_consent', [ 'cookie_consent_message' => $this->config->get('cookie_consent_message'), 'cookie_consent_button' => $this->config->get('cookie_consent_button'), 'cookie_consent_info_id' => $this->config->get('cookie_consent_info_id'), 'cookie_consent_bg_color' => $this->config->get('cookie_consent_bg_color'), 'cookie_consent_text_color' => $this->config->get('cookie_consent_text_color'), 'cookie_consent_button_color' => $this->config->get('cookie_consent_button_color'), 'cookie_consent_font_size' => $this->config->get('cookie_consent_font_size') ]); ]]>
 </add>
 </operation>
 </file>

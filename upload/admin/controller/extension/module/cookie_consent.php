@@ -1,17 +1,17 @@
 <?php
-class ControllerExtensionModuleEduCookieConsent extends Controller {
+class ControllerExtensionModuleCookieConsent extends Controller {
     private $error = [];
 
     public function index() {
-        $this->load->language('extension/module/edu_cookie_consent');
+        $this->load->language('extension/module/cookie_consent');
         $this->document->setTitle($this->language->get('heading_title'));
         $this->load->model('setting/setting');
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-            $this->model_setting_setting->editSetting('edu_cookie_consent', $this->request->post);
-            $this->model_setting_setting->editSetting('module_edu_cookie_consent', ['module_edu_cookie_consent_status' => $this->request->post['edu_cookie_consent_status']]);
+            $this->model_setting_setting->editSetting('cookie_consent', $this->request->post);
+            $this->model_setting_setting->editSetting('module_cookie_consent', ['module_cookie_consent_status' => $this->request->post['cookie_consent_status']]);
             $this->session->data['success'] = $this->language->get('text_success');
-            $this->response->redirect($this->url->link('extension/module/edu_cookie_consent', 'user_token=' . $this->session->data['user_token'], true));
+            $this->response->redirect($this->url->link('extension/module/cookie_consent', 'user_token=' . $this->session->data['user_token'], true));
         }
 
         $data['heading_title'] = $this->language->get('heading_title');
@@ -48,21 +48,21 @@ class ControllerExtensionModuleEduCookieConsent extends Controller {
 
         $data['breadcrumbs'][] = [
             'text' => $this->language->get('heading_title'),
-            'href' => $this->url->link('extension/module/edu_cookie_consent', 'user_token=' . $this->session->data['user_token'], true)
+            'href' => $this->url->link('extension/module/cookie_consent', 'user_token=' . $this->session->data['user_token'], true)
         ];
 
-        $data['action'] = $this->url->link('extension/module/edu_cookie_consent', 'user_token=' . $this->session->data['user_token'], true);
+        $data['action'] = $this->url->link('extension/module/cookie_consent', 'user_token=' . $this->session->data['user_token'], true);
         $data['cancel'] = $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=module', true);
 
         $settings = [
-            'edu_cookie_consent_status',
-            'edu_cookie_consent_message',
-            'edu_cookie_consent_button',
-            'edu_cookie_consent_info_id',
-            'edu_cookie_consent_bg_color',
-            'edu_cookie_consent_text_color',
-            'edu_cookie_consent_button_color',
-            'edu_cookie_consent_font_size'
+            'cookie_consent_status',
+            'cookie_consent_message',
+            'cookie_consent_button',
+            'cookie_consent_info_id',
+            'cookie_consent_bg_color',
+            'cookie_consent_text_color',
+            'cookie_consent_button_color',
+            'cookie_consent_font_size'
         ];
 
         foreach ($settings as $setting) {
@@ -79,11 +79,11 @@ class ControllerExtensionModuleEduCookieConsent extends Controller {
         $data['column_left'] = $this->load->controller('common/column_left');
         $data['footer'] = $this->load->controller('common/footer');
 
-        $this->response->setOutput($this->load->view('extension/module/edu_cookie_consent', $data));
+        $this->response->setOutput($this->load->view('extension/module/cookie_consent', $data));
     }
 
     protected function validate() {
-        if (!$this->user->hasPermission('modify', 'extension/module/edu_cookie_consent')) {
+        if (!$this->user->hasPermission('modify', 'extension/module/cookie_consent')) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
 

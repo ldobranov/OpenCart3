@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']    = 'EduHelp Cookie Consent';
+$_['heading_title']    = 'Cookie Consent';
 
 // Text
 $_['text_extension']   = 'Extensions';

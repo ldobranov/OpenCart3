@@ -26,9 +26,9 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
             <div class="col-sm-10">
-              <select name="edu_cookie_consent_status" id="input-status" class="form-control">
-                <option value="1" {% if edu_cookie_consent_status %}selected{% endif %}>Enabled</option>
-                <option value="0" {% if not edu_cookie_consent_status %}selected{% endif %}>Disabled</option>
+              <select name="cookie_consent_status" id="input-status" class="form-control">
+                <option value="1" {% if cookie_consent_status %}selected{% endif %}>Enabled</option>
+                <option value="0" {% if not cookie_consent_status %}selected{% endif %}>Disabled</option>
               </select>
             </div>
           </div>
@@ -36,23 +36,23 @@
           <div class="form-group">
             <label class="col-sm-2 control-label">{{ entry_message }}</label>
             <div class="col-sm-10">
-              <input type="text" name="edu_cookie_consent_message" value="{{ edu_cookie_consent_message }}" class="form-control" />
+              <input type="text" name="cookie_consent_message" value="{{ cookie_consent_message }}" class="form-control" />
             </div>
           </div>
 
           <div class="form-group">
             <label class="col-sm-2 control-label">{{ entry_button }}</label>
             <div class="col-sm-10">
-              <input type="text" name="edu_cookie_consent_button" value="{{ edu_cookie_consent_button }}" class="form-control" />
+              <input type="text" name="cookie_consent_button" value="{{ cookie_consent_button }}" class="form-control" />
             </div>
           </div>
 
           <div class="form-group">
             <label class="col-sm-2 control-label">{{ entry_info_page }}</label>
             <div class="col-sm-10">
-              <select name="edu_cookie_consent_info_id" class="form-control">
+              <select name="cookie_consent_info_id" class="form-control">
                 {% for info in informations %}
-                  <option value="{{ info.information_id }}" {% if edu_cookie_consent_info_id == info.information_id %}selected{% endif %}>{{ info.title }}</option>
+                  <option value="{{ info.information_id }}" {% if cookie_consent_info_id == info.information_id %}selected{% endif %}>{{ info.title }}</option>
                 {% endfor %}
               </select>
             </div>
@@ -61,28 +61,28 @@
           <div class="form-group">
             <label class="col-sm-2 control-label">{{ entry_bg_color }}</label>
             <div class="col-sm-10">
-              <input type="text" name="edu_cookie_consent_bg_color" value="{{ edu_cookie_consent_bg_color }}" class="form-control" placeholder="#2c2c2c" />
+              <input type="text" name="cookie_consent_bg_color" value="{{ cookie_consent_bg_color }}" class="form-control" placeholder="#2c2c2c" />
             </div>
           </div>
 
           <div class="form-group">
             <label class="col-sm-2 control-label">{{ entry_text_color }}</label>
             <div class="col-sm-10">
-              <input type="text" name="edu_cookie_consent_text_color" value="{{ edu_cookie_consent_text_color }}" class="form-control" placeholder="#ffffff" />
+              <input type="text" name="cookie_consent_text_color" value="{{ cookie_consent_text_color }}" class="form-control" placeholder="#ffffff" />
             </div>
           </div>
 
           <div class="form-group">
             <label class="col-sm-2 control-label">{{ entry_button_color }}</label>
             <div class="col-sm-10">
-              <input type="text" name="edu_cookie_consent_button_color" value="{{ edu_cookie_consent_button_color }}" class="form-control" placeholder="#ffd700" />
+              <input type="text" name="cookie_consent_button_color" value="{{ cookie_consent_button_color }}" class="form-control" placeholder="#ffd700" />
             </div>
           </div>
 
           <div class="form-group">
             <label class="col-sm-2 control-label">{{ entry_font_size }}</label>
             <div class="col-sm-10">
-              <input type="text" name="edu_cookie_consent_font_size" value="{{ edu_cookie_consent_font_size }}" class="form-control" placeholder="14px" />
+              <input type="text" name="cookie_consent_font_size" value="{{ cookie_consent_font_size }}" class="form-control" placeholder="14px" />
             </div>
           </div>
 

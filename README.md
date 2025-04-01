@@ -1,2 +1,2 @@
 # OpenCart3
-OpenCart3 extensions
+OpenCart3 CookieConsent

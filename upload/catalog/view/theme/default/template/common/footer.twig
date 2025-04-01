@@ -53,15 +53,15 @@
 {% for script in scripts %}
   <script src="{{ script.href }}" type="text/javascript"></script>
 {% endfor %}
-{% if config.get('edu_cookie_consent_status') %}
-  {% set edu_cookie_consent_message = config.get('edu_cookie_consent_message') ?? '' %}
-  {% set edu_cookie_consent_button = config.get('edu_cookie_consent_button') ?? '' %}
-  {% set edu_cookie_consent_info_id = config.get('edu_cookie_consent_info_id') ?? '' %}
-  {% set edu_cookie_consent_bg_color = config.get('edu_cookie_consent_bg_color') ?? '' %}
-  {% set edu_cookie_consent_text_color = config.get('edu_cookie_consent_text_color') ?? '' %}
-  {% set edu_cookie_consent_button_color = config.get('edu_cookie_consent_button_color') ?? '' %}
-  {% set edu_cookie_consent_font_size = config.get('edu_cookie_consent_font_size') ?? '' %}
-  {% include 'extension/module/edu_cookie_consent.twig' %}
+{% if config.get('cookie_consent_status') %}
+  {% set cookie_consent_message = config.get('cookie_consent_message') ?? '' %}
+  {% set cookie_consent_button = config.get('cookie_consent_button') ?? '' %}
+  {% set cookie_consent_info_id = config.get('cookie_consent_info_id') ?? '' %}
+  {% set cookie_consent_bg_color = config.get('cookie_consent_bg_color') ?? '' %}
+  {% set cookie_consent_text_color = config.get('cookie_consent_text_color') ?? '' %}
+  {% set cookie_consent_button_color = config.get('cookie_consent_button_color') ?? '' %}
+  {% set cookie_consent_font_size = config.get('cookie_consent_font_size') ?? '' %}
+  {% include 'extension/module/cookie_consent.twig' %}
 {% endif %}
 </body>
 </html>
